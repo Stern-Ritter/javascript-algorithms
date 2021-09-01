@@ -4,13 +4,30 @@
  * Напишите функцию countZeros(n), принимающую на вход натуральное число n.
  * Возвращать функция должна суммарное количество нулей, содержащихся во всех числах от 1 до n включительно.
  *
-*/
+ */
 
 function countZeros(n) {
-    // Напишите код здесь
+  if(typeof n !== 'number') {
+    return 0;
+  }
+  let result = 0;
+  for (let i = 1; i <= n; i++) {
+    let temp = i;
+    while (temp > 9) {
+      if (temp % 10 === 0) {
+        result++;
+      }
+      temp = Math.floor(temp / 10);
+    }
+  }
+  return result;
 }
 
 // Протестируйте решение, вызывая функцию с разными аргументами:
 
 console.log(countZeros(20)); // 2 – два нуля, по одному в числах 10 и 20
 console.log(countZeros(100)); // 11 – 11 нулей в числах: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+console.log(countZeros(-11)); // 0
+console.log(countZeros('a')); // 0
+console.log(countZeros('12')); // 0
+console.log(countZeros()); // 0
